@@ -1,4 +1,4 @@
-package com.example.genshinpickerspring.Services;
+package com.example.genshinpickerspring.Config;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -40,7 +40,11 @@ public class JwtService {
     }
 
     private boolean isTokenExpired(String token){
-        return false; //todo
+        return extractExpiration(token).before(new Date());
+    }
+
+    private Date extractExpiration(String token) {
+        return extractClaim(token, Claims::getExpiration);
     }
 
     public String generateToken(
