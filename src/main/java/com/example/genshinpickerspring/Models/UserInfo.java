@@ -1,6 +1,7 @@
 package com.example.genshinpickerspring.Models;
 
 
+import java.util.List;
 import java.util.Set;
 
 // Модель для отображения информации о пользователе
@@ -9,8 +10,7 @@ public class UserInfo{
     private String email;
     private String username;
     private Role role;
-    private Set<UserCharacterList> userCharacters;
-
+    private List<UsersHero> userCharacters;
 
     public Long getId() {
         return id;
@@ -44,11 +44,11 @@ public class UserInfo{
         this.role = role;
     }
 
-    public Set<UserCharacterList> getUserCharacters() {
+    public List<UsersHero> getUserCharacters() {
         return userCharacters;
     }
 
-    public void setUserCharacters(Set<UserCharacterList> userCharacters) {
+    public void setUserCharacters(List<UsersHero> userCharacters) {
         this.userCharacters = userCharacters;
     }
 }

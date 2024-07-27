@@ -2,6 +2,7 @@ package com.example.genshinpickerspring.Services;
 
 
 import com.example.genshinpickerspring.Config.JwtService;
+import com.example.genshinpickerspring.Models.Hero;
 import com.example.genshinpickerspring.Models.User;
 import com.example.genshinpickerspring.Models.UserInfo;
 import com.example.genshinpickerspring.Repositories.UserRepository;
@@ -34,6 +35,14 @@ public class UserService {
         }
     }
 
+    public Optional<User> getUserById(Long id) {
+        return userRepository.findById(id);
+    }
+
+    public User saveUser(User user) {
+        return userRepository.save(user);
+    }
+
     private String extractJwtFromHeader(String header) {
         if (header != null && header.startsWith("Bearer ")) {
             return header.substring(7); // Remove "Bearer " prefix
@@ -45,7 +54,7 @@ public class UserService {
         UserInfo userInfo = new UserInfo();
         userInfo.setId(user.getId());
         userInfo.setEmail(user.getEmail());
-        userInfo.setUserCharacters(user.getUserCharacters());
+        userInfo.setUserCharacters(user.getUserHeroes());
         userInfo.setUsername(user.getUsername());
         userInfo.setRole(user.getRole());
         return userInfo;

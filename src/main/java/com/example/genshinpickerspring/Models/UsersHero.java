@@ -5,32 +5,30 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor(force = true)
-@Table(name = "UserCharacters")
-public class UserCharacterList {
+@Table(name = "UsersHeroes")
+public class UsersHero {
 
     @Id
     @SequenceGenerator(
-            name="user_character_sequence",
-            sequenceName = "user_character_sequence",
+            name="user_hero_sequence",
+            sequenceName = "user_hero_sequence",
             allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "user_character_sequence"
+            generator = "user_hero_sequence"
     )
     private Long id;
 
-    @Column(name = "user_id", nullable = false)
+    @Column(name = "userId", nullable = false)
     private Long userId;
 
-    @Column(name = "character_id", nullable = false)
-    private Long characterId;
+    @Column(name = "heroId", nullable = false)
+    private Long heroId;
 
     private Integer level;
     private Integer consta;
