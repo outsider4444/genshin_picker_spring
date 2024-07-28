@@ -1,6 +1,5 @@
 package com.example.genshinpickerspring.Services;
 
-import com.example.genshinpickerspring.Models.Hero;
 import com.example.genshinpickerspring.Models.UsersHero;
 import com.example.genshinpickerspring.Repositories.UsersHeroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +16,13 @@ public class UserHeroService {
         return usersHeroRepository.findById(id);
     }
 
-    public UsersHero addUsersHero(UsersHero  usersHero) {
-        return usersHeroRepository.save(usersHero);
+    public void addUsersHero(UsersHero  usersHero) {
+        usersHeroRepository.save(usersHero);
+    }
+
+    public void increaseConstUsersHero(UsersHero usersHero){
+        usersHero.setConsta(usersHero.getConsta() + 1);
+        usersHeroRepository.save(usersHero);
     }
 
     public void deleteUsersHero(Long id) {
