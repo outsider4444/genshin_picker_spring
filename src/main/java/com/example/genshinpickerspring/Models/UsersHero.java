@@ -1,5 +1,6 @@
 package com.example.genshinpickerspring.Models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor(force = true)
-@Table(name = "UsersHeroes")
+@Table(name = "users_heroes")
 public class UsersHero {
 
     @Id
@@ -24,11 +25,14 @@ public class UsersHero {
     )
     private Long id;
 
-    @Column(name = "userId", nullable = false)
-    private Long userId;
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
-    @Column(name = "heroId", nullable = false)
-    private Long heroId;
+    @ManyToOne
+    @JoinColumn(name = "hero_id", nullable = false)
+    private Hero hero;
 
     private Integer level;
     private Integer consta;

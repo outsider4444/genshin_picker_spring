@@ -20,6 +20,11 @@ public class UserHeroService {
         usersHeroRepository.save(usersHero);
     }
 
+    public void increaseLevelUsersHero(UsersHero usersHero, Integer level){
+        usersHero.setLevel(level);
+        usersHeroRepository.save(usersHero);
+    }
+
     public void increaseConstUsersHero(UsersHero usersHero){
         usersHero.setConsta(usersHero.getConsta() + 1);
         usersHeroRepository.save(usersHero);

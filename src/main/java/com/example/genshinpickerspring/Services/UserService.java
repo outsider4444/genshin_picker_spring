@@ -2,9 +2,8 @@ package com.example.genshinpickerspring.Services;
 
 
 import com.example.genshinpickerspring.Config.JwtService;
-import com.example.genshinpickerspring.Models.Hero;
 import com.example.genshinpickerspring.Models.User;
-import com.example.genshinpickerspring.Models.UserInfo;
+import com.example.genshinpickerspring.Models.RequestModels.UserInfo;
 import com.example.genshinpickerspring.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -10,7 +10,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "Heroes")
+@Table(name = "heroes")
 public class Hero {
     @Id
     @SequenceGenerator(
@@ -35,7 +35,12 @@ public class Hero {
 
     private ElementType elementType;
 
-    @OneToMany(mappedBy = "heroId", cascade = CascadeType.ALL, orphanRemoval = true)
-    @ToString.Exclude
-    private Set<UsersHero> userHeroes;
+    @OneToMany(mappedBy = "hero", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<UsersHero> usersHeroes;
+
+    @OneToMany(mappedBy = "hero", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<TournamentHero> tournamentHeroes;
+
+    @OneToMany(mappedBy = "hero", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<TournamentCreateHero> tournamentCreateHeroes;
 }

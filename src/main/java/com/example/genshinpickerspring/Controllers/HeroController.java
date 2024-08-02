@@ -2,6 +2,7 @@ package com.example.genshinpickerspring.Controllers;
 
 import com.example.genshinpickerspring.Models.ElementType;
 import com.example.genshinpickerspring.Models.Hero;
+import com.example.genshinpickerspring.Models.RequestModels.TournamentHeroInfo;
 import com.example.genshinpickerspring.Services.HeroService;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -33,9 +34,16 @@ public class HeroController {
     @Value("${heroes.image.upload.directory}")
     private String uploadDirectory;
 
+
+    //HeroInfo
+    @GetMapping("/heroTournamentInfo")
+    public List<TournamentHeroInfo> getAllHeroesForTournament() {
+        return heroService.convertToTournamentHeroInfoModel(heroService.getAll());
+    }
+
     @GetMapping
     public List<Hero> getAllHeroes() {
-        return heroService.getAllHeroes();
+        return heroService.getAll();
     }
 
     @GetMapping("/{id}/photo")
@@ -56,7 +64,6 @@ public class HeroController {
             throw new ResourceNotFoundException("File not found " + hero.getPhotoPath(), e);
         }
     }
-
 
     @GetMapping("/{id}")
     public ResponseEntity<Hero> getHeroById(@PathVariable Long id) {

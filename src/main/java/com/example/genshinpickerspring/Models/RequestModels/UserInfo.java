@@ -1,5 +1,8 @@
-package com.example.genshinpickerspring.Models;
+package com.example.genshinpickerspring.Models.RequestModels;
 
+
+import com.example.genshinpickerspring.Models.Role;
+import com.example.genshinpickerspring.Models.UsersHero;
 
 import java.util.List;
 import java.util.Set;

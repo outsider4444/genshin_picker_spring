@@ -1,7 +1,6 @@
 package com.example.genshinpickerspring.Controllers;
 
-import com.example.genshinpickerspring.Config.JwtService;
-import com.example.genshinpickerspring.Models.UserInfo;
+import com.example.genshinpickerspring.Models.RequestModels.UserInfo;
 import com.example.genshinpickerspring.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
