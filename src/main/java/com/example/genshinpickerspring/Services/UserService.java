@@ -56,6 +56,7 @@ public class UserService {
         userInfo.setUserCharacters(user.getUserHeroes());
         userInfo.setUsername(user.getUsername());
         userInfo.setRole(user.getRole());
+        userInfo.setOwnedTournaments(user.getOwnedTournaments());
         return userInfo;
     }
 }

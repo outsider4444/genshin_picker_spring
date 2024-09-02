@@ -2,6 +2,7 @@ package com.example.genshinpickerspring.Models.RequestModels;
 
 
 import com.example.genshinpickerspring.Models.Role;
+import com.example.genshinpickerspring.Models.Tournament;
 import com.example.genshinpickerspring.Models.UsersHero;
 
 import java.util.List;
@@ -14,6 +15,8 @@ public class UserInfo{
     private String username;
     private Role role;
     private List<UsersHero> userCharacters;
+
+    private List<Tournament> ownedTournaments;
 
     public Long getId() {
         return id;
@@ -53,5 +56,13 @@ public class UserInfo{
 
     public void setUserCharacters(List<UsersHero> userCharacters) {
         this.userCharacters = userCharacters;
+    }
+
+    public List<Tournament> getOwnedTournaments() {
+        return ownedTournaments;
+    }
+
+    public void setOwnedTournaments(List<Tournament> ownedTournaments) {
+        this.ownedTournaments = ownedTournaments;
     }
 }

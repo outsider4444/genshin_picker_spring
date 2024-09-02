@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.multipart.MultipartFile;
@@ -46,7 +48,7 @@ public class HeroController {
         return heroService.getAll();
     }
 
-    @GetMapping("/{id}/photo")
+    @GetMapping("/photo/{id}")
     public ResponseEntity<Resource> getHeroPath(@PathVariable Long id) throws MalformedURLException {
         Hero hero = heroService.getHeroById(id).orElseThrow();
 
@@ -135,6 +137,7 @@ public class HeroController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> deleteHero(@PathVariable Long id) {
         heroService.deleteHero(id);
         return ResponseEntity.noContent().build();

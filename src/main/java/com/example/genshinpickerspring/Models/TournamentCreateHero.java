@@ -2,6 +2,8 @@ package com.example.genshinpickerspring.Models;
 
 import com.example.genshinpickerspring.Models.Hero;
 import com.example.genshinpickerspring.Models.Tournament;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,8 +18,10 @@ import lombok.NoArgsConstructor;
 public class TournamentCreateHero {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonBackReference("tournament-create-heroes")
     @ManyToOne
     @JoinColumn(name = "tournament_id")
     private Tournament tournament;
@@ -26,8 +30,6 @@ public class TournamentCreateHero {
     @JoinColumn(name = "hero_id")
     private Hero hero;
 
-    private Boolean isDisabled;
-
-    private boolean isBanned;
-    private boolean isImmune;
+    private boolean isBanned; // Забанен ли герой
+    private boolean isImmune; // Будет ли у героя иммун при пиках/банах
 }

@@ -19,6 +19,9 @@ public class HeroService {
     @Autowired
     private HeroRepository heroRepository;
 
+    public HeroService(HeroRepository heroRepository){
+        this.heroRepository = heroRepository;
+    }
 
     public List<Hero> getAll() {
         return heroRepository.findAll();

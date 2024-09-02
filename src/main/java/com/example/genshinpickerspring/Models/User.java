@@ -1,11 +1,8 @@
 package com.example.genshinpickerspring.Models;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,7 +10,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 @Data
 @Builder
@@ -21,6 +17,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class User implements UserDetails {
 
     @Id
@@ -48,9 +45,16 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @JsonManagedReference
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<UsersHero> userHeroes;
+
+    @JsonManagedReference("owner-tournaments")
+    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
+    private List<Tournament> ownedTournaments;
+
+    @JsonManagedReference("opponent-tournaments")
+    @OneToMany(mappedBy = "opponent", fetch = FetchType.EAGER)
+    private List<Tournament> opponentTournaments;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -58,8 +62,17 @@ public class User implements UserDetails {
     }
 
     @Override
+    public String getUsername(){
+        return email;
+    }
+
+    @Override
     public String getPassword(){
         return password;
+    }
+
+    public String toString(){
+        return this.username;
     }
 
 }

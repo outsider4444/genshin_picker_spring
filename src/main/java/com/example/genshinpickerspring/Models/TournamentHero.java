@@ -1,5 +1,7 @@
 package com.example.genshinpickerspring.Models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,8 +15,10 @@ import lombok.NoArgsConstructor;
 public class TournamentHero {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonBackReference("tournament-heroes")
     @ManyToOne
     @JoinColumn(name = "tournament_id")
     private Tournament tournament;
@@ -24,9 +28,11 @@ public class TournamentHero {
     private Hero hero;
 
     private Integer turnNumber;
+    private PickState pickState;
 
-    private boolean isBanned;
-    private boolean isImmune;
-    private boolean isPicked;
+}
 
+enum PickState{
+    Picked,
+    Banned,
 }

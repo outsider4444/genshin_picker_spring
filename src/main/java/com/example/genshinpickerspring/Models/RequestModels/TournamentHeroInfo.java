@@ -13,10 +13,8 @@ public class TournamentHeroInfo {
     private Integer starCount;
     private boolean isEnabled;
 
-
-
-
     private ElementType elementType;
+
 
     public Long getId() {
         return id;
@@ -57,6 +55,7 @@ public class TournamentHeroInfo {
     public void setElementType(ElementType elementType) {
         this.elementType = elementType;
     }
+
     public boolean isEnabled() {
         return isEnabled;
     }
