@@ -1,5 +1,6 @@
 package com.example.genshinpickerspring.Controllers;
 
+import com.example.genshinpickerspring.Models.RequestModels.TournamentDTO;
 import com.example.genshinpickerspring.Models.RequestModels.UserInfo;
 import com.example.genshinpickerspring.Models.Tournament;
 import com.example.genshinpickerspring.Models.TournamentCreateHero;
@@ -12,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -24,8 +26,15 @@ public class TournamentController {
     private UserService userService;
 
     @GetMapping
-    private List<Tournament> getAll(){
-        return tournamentService.getAll();
+    private List<TournamentDTO> getAll(){
+        List<TournamentDTO> tournamentDTOList = new ArrayList<>();
+        List<Tournament> tournaments = tournamentService.getAll();
+        for (Tournament tour: tournaments) {
+            TournamentDTO newTour = tournamentService.convertToDTO(tour);
+            tournamentDTOList.add(newTour);
+        }
+
+        return tournamentDTOList;
     }
 
     // TODO

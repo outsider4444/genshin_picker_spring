@@ -9,7 +9,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -36,6 +38,9 @@ public class Tournament {
     @JoinColumn(name = "opponent_id")
     private User opponent;
 
+    @CreationTimestamp
+    private Date dateCreated;
+
     private Boolean isOpen;
     private String code;
     private Boolean isArchive;
@@ -47,4 +52,8 @@ public class Tournament {
     @JsonManagedReference("tournament-create-heroes")
     @OneToMany(mappedBy = "tournament", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TournamentCreateHero> tournamentCreateHeroes;
+
+    public String toString(){
+        return code;
+    }
 }
